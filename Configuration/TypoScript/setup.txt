@@ -1,0 +1,7 @@
+
+
+plugin.tx_news {
+	settings {
+		orderByAllowed := addToList(tx_newsmostread_count)
+	}
+}

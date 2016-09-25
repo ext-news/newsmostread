@@ -1,0 +1,3 @@
+
+# cat=basic/enable/30; type=integer; label=LLL:EXT:newsmostread/Resources/Private/Language/locallang_be.xml:extmng.daysForNextVoting
+daysForNextVoting = 3

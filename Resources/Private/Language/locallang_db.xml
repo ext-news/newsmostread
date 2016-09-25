@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'newsmostread'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_news_domain_model_news.tx_newsmostread_enabled">Enable counter</label>
+			<label index="tx_news_domain_model_news.tx_newsmostread_count">Most read counter</label>
+
+		</languageKey>
+	</data>
+</T3locallang>

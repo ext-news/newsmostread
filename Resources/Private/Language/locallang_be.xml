@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'newsmostread'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<!--Extension Manager-->
+			<label index="extmng.daysForNextVoting">Days after voting from same IP address is allowed. Set to 0 to ignore IP restriction.</label>
+
+			<!--Scheduler Task-->
+			<label index="cleanupTask.name">Cleanup newsmostread log</label>
+			<label index="cleanupTask.description">Cleanup old entries from the IP logging database</label>
+			<label index="resetCountTask.name">Reset newsmostread count </label>
+			<label index="resetCountTask.description">Reset the count of all news items</label>
+		</languageKey>
+	</data>
+</T3locallang>
