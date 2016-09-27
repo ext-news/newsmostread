@@ -58,6 +58,7 @@ class Eid
         $this->db = $GLOBALS['TYPO3_DB'];
         $this->newsUid = (int)GeneralUtility::_GET('uid');
         $this->type == ((int)GeneralUtility::_GET('png') === self::TYPE_PNG ? self::TYPE_PNG : self::TYPE_GIF);
+		$this->TSFE = \TYPO3\CMS\Frontend\Utility\EidUtility::initFeUser();
 
         $this->configuration = (array)unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['newsmostread']);
     }
@@ -91,10 +92,15 @@ class Eid
                 'news' => $this->newsUid,
                 'log_date' => $this->getCurrentDate()
             ));
-
-            $maxTimeFrame = $GLOBALS['EXEC_TIME'] - (self::DAYS_CONSIDERED_FOR_VOTE * 86400);
-            $where = 'tx_newsmostread_enabled=1 AND uid=' . $this->newsUid . ' AND datetime >= ' . $maxTimeFrame;
-            $this->db->sql_query('UPDATE tx_news_domain_model_news SET tx_newsmostread_count=tx_newsmostread_count+1 WHERE ' . $where);
+			//$GLOBAL['TSFE'] = \TYPO3\CMS\Frontend\Utility\EidUtility::getTSFE();
+			$session_vars = $this->TSFE->getKey('ses','newsmostread');
+			if (!isset($session_vars[$this->newsUid]) || $session_vars[$this->newsUid] != '1') {
+				$session_vars[$this->newsUid]='1';
+				$this->TSFE->setKey('ses','newsmostread',$session_vars);
+				$maxTimeFrame = $GLOBALS['EXEC_TIME'] - (self::DAYS_CONSIDERED_FOR_VOTE * 86400);
+				$where = 'tx_newsmostread_enabled=1 AND uid=' . $this->newsUid . ' AND datetime >= ' . $maxTimeFrame;
+				$this->db->sql_query('UPDATE tx_news_domain_model_news SET tx_newsmostread_count=tx_newsmostread_count+1 WHERE ' . $where);
+			}
         }
     }
 
